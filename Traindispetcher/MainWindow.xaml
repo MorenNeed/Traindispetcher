@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Traindispetcher"
         mc:Ignorable="d"
-        Title="Інформація про поїздки" Height="Auto" Width="Auto" SizeToContent="WidthAndHeight" Icon="Train.ico">
+        Title="Інформація про поїздки" Height="Auto" Width="Auto" SizeToContent="WidthAndHeight" Icon="Train.ico" Loaded="InfoTrainrideForm_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -14,7 +14,7 @@
         <Menu x:Name="MainMenu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="792" BorderThickness="1">
             <MenuItem Name="FileMenuItem" Header="Файл">
                 <MenuItem Name="LoadDataMenuItem" Header="Завантажити"/>
-                <MenuItem Name="SaveDataMenuItem" Header="Зберегти"/>
+                <MenuItem Name="SaveDataMenuItem" Header="Зберегти" Click="SaveDataMenuItem_Click"/>
             </MenuItem>
             <MenuItem Name="TrainrideMenuItem" Header="Подорожі">
                 <MenuItem Name="EditDataMenuItem" Header="Редагувати"/>
@@ -24,7 +24,7 @@
                 <MenuItem Name="SelectXMenuItem" Header="За містом призначення"/>
                 <MenuItem Name="SelectXYMenuItem" Header="За часом відправлення"/>
             </MenuItem>
-            <MenuItem Name="AuthMenuItem" Header="Авторизація"/>
+            <MenuItem Name="AuthMenuItem" Header="Авторизація" Click="AuthMenuItem_Click"/>
         </Menu>
         <DataGrid x:Name="TrainrideListDG" HorizontalAlignment="Left" Margin="5,20,30,40" VerticalAlignment="Top" AutoGenerateColumns="False" ItemsSource="{Binding}">
             <DataGrid.Columns>
