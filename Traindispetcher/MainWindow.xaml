@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Traindispetcher"
         mc:Ignorable="d"
-        Title="Інформація про поїздки" Height="Auto" Width="Auto" SizeToContent="WidthAndHeight" Icon="Train.ico" Loaded="InfoTrainrideForm_Loaded">
+        Title="Інформація про поїздки" Height="Auto" Width="Auto" SizeToContent="WidthAndHeight" Icon="Train.ico" Loaded="InfoTrainrideForm_Loaded" Activated="InfoTrainrideForm_Activated">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>

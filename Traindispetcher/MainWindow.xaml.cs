@@ -9,31 +9,34 @@ namespace Traindispetcher
     /// </summary>
     public partial class MainWindow : Window
     {
+        DataAccess DataConnection;
+        //public static DataAccess DataConnection;
+        public static Authorization logedUser = new Authorization();
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
         private void InfoTrainrideForm_Loaded(object sender, RoutedEventArgs e)
         {
-            /*
-            selTrainrideGroupBox.Visibility = Visibility.Hidden;
+            
+            //selTrainrideGroupBox.Visibility = Visibility.Hidden;
 
             DataConnection = new DataAccess();
 
             TrainrideListDG.ItemsSource = DataConnection.fList;
 
-            TrainrideGroupBox.Visibility = Visibility.Hidden;
+            //TrainrideGroupBox.Visibility = Visibility.Hidden;
             
             this.SizeToContent = SizeToContent.Manual;
             TrainrideListDG.Height = 420;
             this.Width = TrainrideListDG.Margin.Left + TrainrideListDG.RenderSize.Width + 90;
             this.Height = TrainrideListDG.Margin.Top + TrainrideListDG.RenderSize.Height + 90;
-            */
 
             TrainrideMenuItem.Visibility = Visibility.Hidden;
             TrainrideMenuItem.Width = 0;
         }
-
         private void SaveDataMenuItem_Click(object sender, RoutedEventArgs e)
         {
             /*
@@ -57,12 +60,25 @@ namespace Traindispetcher
             }
             */
         }
-
         private void AuthMenuItem_Click(object sender, RoutedEventArgs e)
         {
             LogInForm logWnd = new LogInForm();
             logWnd.Show();
             this.Visibility = Visibility.Collapsed;
+        }
+
+        private void InfoTrainrideForm_Activated(object sender, System.EventArgs e)
+        {
+            if (Authorization.logUser == 2)
+            {
+                TrainrideMenuItem.Visibility = Visibility.Visible;
+                TrainrideMenuItem.Width = 70;
+            }
+            else 
+            {
+                TrainrideMenuItem.Visibility = Visibility.Hidden;
+                TrainrideMenuItem.Width = 0;
+            }
         }
     }
 }
