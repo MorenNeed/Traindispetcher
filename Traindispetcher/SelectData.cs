@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using static Traindispetcher.GlobalClass;
 
@@ -16,37 +13,37 @@ namespace Traindispetcher
         Microsoft.Office.Interop.Word.Document wordDoc;
         string filePath;
 
-        public SelectData() {}
-        public void SelectX(string cityX = "") 
+        public SelectData() { }
+        public void SelectX(string cityX = "")
         {
             int j = 0;
-            for (int i = 0; i < MainWindow.TrainrideCount; i++) 
+            for (int i = 0; i < MainWindow.TrainrideCount; i++)
             {
-                if (cityX == MainWindow.DataConnection.fList[i].city) 
+                if (cityX == MainWindow.DataConnection.fList[i].city)
                 {
                     selectedCityList.Add(MainWindow.DataConnection.fList[i]);
                     j++;
                 }
             }
         }
-        public void SelectXY(TimeSpan deadLine) 
+        public void SelectXY(TimeSpan deadLine)
         {
             int j = 0;
-            for (int i = 0; i < selectedCityList.Count; i++) 
+            for (int i = 0; i < selectedCityList.Count; i++)
             {
-                if (deadLine.Hours > selectedCityList[i].departure_time.Hours) 
+                if (deadLine.Hours > selectedCityList[i].departure_time.Hours)
                 {
                     selectedCityTimeList.Add(selectedCityList[i]);
                     j++;
                 }
-                if ((deadLine.Hours == selectedCityList[i].departure_time.Hours) && (deadLine.Minutes >= selectedCityList[i].departure_time.Minutes)) 
+                if ((deadLine.Hours == selectedCityList[i].departure_time.Hours) && (deadLine.Minutes >= selectedCityList[i].departure_time.Minutes))
                 {
                     selectedCityTimeList.Add(selectedCityList[i]);
                     j++;
                 }
             }
         }
-        public void WriteData(List<Trainride> selXList, List<Trainride> selXYList) 
+        public void WriteData(List<Trainride> selXList, List<Trainride> selXYList)
         {
             filePath = Environment.CurrentDirectory.ToString();
             try
@@ -55,7 +52,7 @@ namespace Traindispetcher
                 wordDoc = wordApp.Documents.Add(filePath + "\\Шаблон_Пошуку_подорожей.dot");
                 wordApp.Visible = true;
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + char.ConvertFromUtf32(13) + "Помістіть файл Шаблон_Пошуку_подорожей.dot " + char.ConvertFromUtf32(13) +
                     "у каталог із exe-файлом програми і повторіть збереження", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -70,24 +67,24 @@ namespace Traindispetcher
 
             ReplaceText(selXYList, 2);
 
-            try 
+            try
             {
                 wordDoc.Save();
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + char.ConvertFromUtf32(13) + "Помилка відібраних даних", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            if(wordDoc != null) 
+            if (wordDoc != null)
             {
                 wordDoc.Close(Microsoft.Office.Interop.Word.WdSaveOptions.wdPromptToSaveChanges);
             }
-            if (wordApp != null) 
+            if (wordApp != null)
             {
                 wordApp.Quit(Microsoft.Office.Interop.Word.WdSaveOptions.wdPromptToSaveChanges);
             }
         }
-        private void ReplaceText(string textToReplace, string replacedText) 
+        private void ReplaceText(string textToReplace, string replacedText)
         {
             Object missing = Type.Missing;
 
@@ -114,13 +111,13 @@ namespace Traindispetcher
         }
         private void ReplaceText(List<Trainride> selectedList, int numTable)
         {
-            for (int i = 0; i < selectedList.Count; i++) 
+            for (int i = 0; i < selectedList.Count; i++)
             {
                 wordDoc.Tables[numTable].Rows.Add();
                 wordDoc.Tables[numTable].Cell(2 + i, 1).Range.Text = selectedList[i].number;
                 wordDoc.Tables[numTable].Cell(2 + i, 2).Range.Text = selectedList[i].departure_time.ToString();
 
-                if (numTable == 2) 
+                if (numTable == 2)
                 {
                     wordDoc.Tables[numTable].Cell(2 + i, 3).Range.Text = selectedList[i].free_seats.ToString();
                 }

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Windows;
-using MySql.Data.MySqlClient;
 using static Traindispetcher.GlobalClass;
 
 namespace Traindispetcher
@@ -12,11 +12,11 @@ namespace Traindispetcher
 
         public List<Trainride> fList = new List<Trainride>(85);
 
-        public DataAccess() 
+        public DataAccess()
         {
             OpenDbFile();
         }
-        private void OpenDbFile() 
+        private void OpenDbFile()
         {
             try
             {

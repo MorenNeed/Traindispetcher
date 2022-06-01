@@ -19,7 +19,7 @@ namespace Traindispetcher
                 Application.Current.MainWindow.Show();
                 this.Close();
             }
-            else 
+            else
             {
                 MessageBox.Show("Введіть правильні дані авторизації.", "Помилка!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
@@ -32,7 +32,7 @@ namespace Traindispetcher
 
         private void LogInForm_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == Key.Enter) 
+            if (e.Key == Key.Enter)
             {
                 AuthCheck();
             }

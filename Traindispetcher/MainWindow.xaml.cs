@@ -45,7 +45,7 @@ namespace Traindispetcher
         }
         private void SaveDataMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            
+
             if ((selTrainrideGroupBox.Visibility == Visibility.Visible) && (selXY.selectedCityList.Count > 0))
             {
                 selXY.WriteData(selXY.selectedCityList, selXY.selectedCityTimeList);
@@ -64,7 +64,7 @@ namespace Traindispetcher
                     editedRow.ChangeDBRow();
                 }
             }
-            
+
         }
         private void LoadDataMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -93,7 +93,7 @@ namespace Traindispetcher
                 TrainrideMenuItem.Visibility = Visibility.Visible;
                 TrainrideMenuItem.Width = 70;
             }
-            else 
+            else
             {
                 TrainrideMenuItem.Visibility = Visibility.Hidden;
                 TrainrideMenuItem.Width = 0;
@@ -110,7 +110,7 @@ namespace Traindispetcher
         }
         private void TrainrideListDG_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (TrainrideListDG.SelectedItem != null) 
+            if (TrainrideListDG.SelectedItem != null)
             {
                 editedTrainride = TrainrideListDG.SelectedItem as Trainride;
                 try
@@ -120,9 +120,9 @@ namespace Traindispetcher
                     timeTrainrideTextBox.Text = editedTrainride.departure_time.ToString(@"hh\:mm");
                     freeSeatsTextBox.Text = editedTrainride.free_seats.ToString();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message + char.ConvertFromUtf32(13),"",MessageBoxButton.OK,MessageBoxImage.Error);
+                    MessageBox.Show(ex.Message + char.ConvertFromUtf32(13), "", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
                 editedRow = new EditDB();
@@ -130,23 +130,23 @@ namespace Traindispetcher
                 editedRow.TrainrideAdd = false;
             }
         }
-        private void ChangeTrainrideListData(int num) 
+        private void ChangeTrainrideListData(int num)
         {
             TimeSpan depTime;
             int seats;
 
-            if (editedRow.TrainrideAdd) 
+            if (editedRow.TrainrideAdd)
             {
                 editedTrainride = new Trainride(DataConnection.fList.Count + 1, "", "", TimeSpan.Zero, 0);
             }
 
             editedTrainride.number = numTrainrideTextBox.Text;
             editedTrainride.city = cityTrainrideTextBox.Text;
-            if (TimeSpan.TryParse(timeTrainrideTextBox.Text, out depTime)) 
+            if (TimeSpan.TryParse(timeTrainrideTextBox.Text, out depTime))
             {
                 editedTrainride.departure_time = depTime;
             }
-            if (int.TryParse(freeSeatsTextBox.Text.Trim('_'), out seats)) 
+            if (int.TryParse(freeSeatsTextBox.Text.Trim('_'), out seats))
             {
                 editedTrainride.free_seats = seats;
             }
@@ -165,11 +165,11 @@ namespace Traindispetcher
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            if ((TrainrideListDG.SelectedIndex < 0)&&(!editedRow.TrainrideAdd)) 
+            if ((TrainrideListDG.SelectedIndex < 0) && (!editedRow.TrainrideAdd))
             {
                 MessageBox.Show("Оберіть у списку рейс для редагування подвійним кліком", "Увага!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-            else 
+            else
             {
                 ChangeTrainrideListData(editedRow.TrainrideNum);
 
@@ -191,7 +191,7 @@ namespace Traindispetcher
             editedRow.TrainrideAdd = true;
 
             editedRow.TrainrideNum = DataConnection.fList.Count;
-            if (editedRow.TrainrideNum >= 85) 
+            if (editedRow.TrainrideNum >= 85)
             {
                 editedRow.TrainrideAdd = false;
                 MessageBox.Show("Кількість записів перевищує ліміт. Подвійним кліком миші оберіть запис, " + "який потрібно видалити", "Увага", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -210,7 +210,7 @@ namespace Traindispetcher
 
             FillCityList();
         }
-        private void FillCityList() 
+        private void FillCityList()
         {
             TrainrideCount = 0;
 
@@ -218,7 +218,7 @@ namespace Traindispetcher
             {
                 if (DataConnection.fList[i].city != null)
                 {
-                    if (DataConnection.fList[i].city != "") 
+                    if (DataConnection.fList[i].city != "")
                     {
                         TrainrideCount++;
                     }
@@ -227,21 +227,21 @@ namespace Traindispetcher
             bool nameExist = false;
             cityList.Items.Add(DataConnection.fList[0].city);
 
-            for (int i = 1; i < TrainrideCount; i++) 
+            for (int i = 1; i < TrainrideCount; i++)
             {
-                for (int j = 0; j < cityList.Items.Count; j++) 
+                for (int j = 0; j < cityList.Items.Count; j++)
                 {
-                    if (cityList.Items[j].ToString() == DataConnection.fList[i].city) 
+                    if (cityList.Items[j].ToString() == DataConnection.fList[i].city)
                     {
                         nameExist = true;
                     }
                 }
-                if (!nameExist) 
+                if (!nameExist)
                 {
                     cityList.Items.Add(DataConnection.fList[i].city);
                 }
                 nameExist = false;
-            
+
             }
         }
         private void selBtn_Click(object sender, RoutedEventArgs e)
@@ -253,9 +253,9 @@ namespace Traindispetcher
 
             selXY.SelectX(selectedCity);
 
-            for (int i = 0; i < selXY.selectedCityList.Count; i++) 
+            for (int i = 0; i < selXY.selectedCityList.Count; i++)
             {
-                if (selXY.selectedCityList[i].number != null) 
+                if (selXY.selectedCityList[i].number != null)
                 {
                     TrainrideListDG.ItemsSource = selXY.selectedCityList;
                 }
@@ -265,13 +265,13 @@ namespace Traindispetcher
 
             selXY.SelectXY(timeTrainride);
 
-            for (int i = 0; i < selXY.selectedCityTimeList.Count; i++) 
+            for (int i = 0; i < selXY.selectedCityTimeList.Count; i++)
             {
                 if (timeTrainrideLabelY.Visibility == Visibility.Hidden)
                 {
                     TrainrideListDG.ItemsSource = selXY.selectedCityList;
                 }
-                else 
+                else
                 {
                     TrainrideListDG.ItemsSource = selXY.selectedCityTimeList;
                 }

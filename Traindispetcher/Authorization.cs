@@ -1,14 +1,12 @@
-﻿using System.Windows;
-
-namespace Traindispetcher
+﻿namespace Traindispetcher
 {
     public class Authorization
     {
         public static int logUser { get; set; }
-        public int LogCheck(string logText, string pswText) 
+        public int LogCheck(string logText, string pswText)
         {
             logUser = 0;
-            if ((logText == "admin") && (pswText == "123")) 
+            if ((logText == "admin") && (pswText == "123"))
             {
                 logUser = 2;
             }

@@ -1,7 +1,6 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Windows;
-using MySql.Data.MySqlClient;
-using System.Collections.Generic;
 
 namespace Traindispetcher
 {
@@ -44,7 +43,7 @@ namespace Traindispetcher
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + char.ConvertFromUtf32(13) + char.ConvertFromUtf32(13) + "Помилка з'єднання з БД", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
