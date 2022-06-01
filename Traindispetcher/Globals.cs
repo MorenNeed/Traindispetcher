@@ -12,6 +12,7 @@ namespace Traindispetcher
             public string city { get; set; }
             public System.TimeSpan departure_time { get; set; }
             public int free_seats { get; set; }
+
             public Trainride(int idNum, string nF, string cF, System.TimeSpan tF, int fS)
             {
                 this.id = idNum;

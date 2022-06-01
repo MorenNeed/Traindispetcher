@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Traindispetcher"
         mc:Ignorable="d"
-        Title="Авторизація" Height="120" Width="240" WindowStyle="ToolWindow" KeyDown="LogInForm_KeyDown" Closed="LogInForm_Closed">
+        Title="Авторизація" Height="120" Width="240" WindowStyle="ToolWindow" KeyDown="LogInForm_KeyDown" Closed="LogInForm_Closed" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="logLabel" Content="Логін" Height="Auto" Width="Auto" HorizontalAlignment="Left" Margin="15,15,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="logTextBox" Height="20" Width="80" HorizontalAlignment="Left" Margin="80,20,0,0" VerticalAlignment="Top"/>

@@ -36,7 +36,7 @@ namespace Traindispetcher
             TrainrideGroupBox.Visibility = Visibility.Hidden;
 
             this.SizeToContent = SizeToContent.Manual;
-            TrainrideListDG.Height = 420;
+            TrainrideListDG.Height = 320;
             this.Width = TrainrideListDG.Margin.Left + TrainrideListDG.RenderSize.Width + 90;
             this.Height = TrainrideListDG.Margin.Top + TrainrideListDG.RenderSize.Height + 90;
 
@@ -91,7 +91,7 @@ namespace Traindispetcher
             if (Authorization.logUser == 2)
             {
                 TrainrideMenuItem.Visibility = Visibility.Visible;
-                TrainrideMenuItem.Width = 50;
+                TrainrideMenuItem.Width = 70;
             }
             else 
             {
@@ -103,29 +103,32 @@ namespace Traindispetcher
         {
             TrainrideGroupBox.Visibility = Visibility.Visible;
 
-            this.Width = TrainrideGroupBox.Margin.Left + TrainrideGroupBox.RenderSize.Width + 90;
-            this.Height = TrainrideListDG.Margin.Top + TrainrideListDG.RenderSize.Height + 90;
+            this.Width = 750;
+            this.Height = 480;
 
             MessageBox.Show("Оберіть у списку рейс для редагування подвійним кліком", "Увага!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
         private void TrainrideListDG_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Trainride editedTrainride = TrainrideListDG.SelectedItem as Trainride;
-            try
+            if (TrainrideListDG.SelectedItem != null) 
             {
-                numTrainrideTextBox.Text = editedTrainride.number;
-                cityTrainrideTextBox.Text = editedTrainride.city;
-                timeTrainrideTextBox.Text = editedTrainride.departure_time.ToString(@"hh\:mm");
-                freeSeatsTextBox.Text = editedTrainride.free_seats.ToString();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message + char.ConvertFromUtf32(13),"",MessageBoxButton.OK,MessageBoxImage.Error);
-            }
+                editedTrainride = TrainrideListDG.SelectedItem as Trainride;
+                try
+                {
+                    numTrainrideTextBox.Text = editedTrainride.number;
+                    cityTrainrideTextBox.Text = editedTrainride.city;
+                    timeTrainrideTextBox.Text = editedTrainride.departure_time.ToString(@"hh\:mm");
+                    freeSeatsTextBox.Text = editedTrainride.free_seats.ToString();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message + char.ConvertFromUtf32(13),"",MessageBoxButton.OK,MessageBoxImage.Error);
+                }
 
-            editedRow = new EditDB();
-            editedRow.TrainrideNum = TrainrideListDG.SelectedIndex;
-            editedRow.TrainrideAdd = false;
+                editedRow = new EditDB();
+                editedRow.TrainrideNum = TrainrideListDG.SelectedIndex;
+                editedRow.TrainrideAdd = false;
+            }
         }
         private void ChangeTrainrideListData(int num) 
         {
@@ -177,8 +180,8 @@ namespace Traindispetcher
         {
             TrainrideGroupBox.Visibility = Visibility.Visible;
 
-            this.Width = TrainrideGroupBox.Margin.Left + TrainrideGroupBox.RenderSize.Width + 90;
-            this.Height = TrainrideListDG.Margin.Top + TrainrideListDG.RenderSize.Height + 90;
+            this.Width = 750;
+            this.Height = 480;
 
             numTrainrideTextBox.Text = "";
             cityTrainrideTextBox.Text = "";
@@ -200,7 +203,7 @@ namespace Traindispetcher
             timeTrainrideLabelY.Visibility = Visibility.Hidden;
             sTime.Visibility = Visibility.Hidden;
 
-            this.Width = 660;
+            this.Width = 750;
             this.Height = 480;
 
             cityList.Items.Clear();
@@ -280,7 +283,7 @@ namespace Traindispetcher
             timeTrainrideLabelY.Visibility = Visibility.Visible;
             sTime.Visibility = Visibility.Visible;
 
-            this.Width = 660;
+            this.Width = 750;
             this.Height = 480;
 
             cityList.Items.Clear();

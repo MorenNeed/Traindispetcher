@@ -8,11 +8,11 @@
         xmlns:s="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Traindispetcher"
         mc:Ignorable="d"
-        Title="Інформація про поїздки" Height="480" Width="660" SizeToContent="WidthAndHeight" Icon="Train.ico" Loaded="InfoTrainrideForm_Loaded" Activated="InfoTrainrideForm_Activated">
+        Title="Інформація про поїздки" Height="480" Width="750" SizeToContent="WidthAndHeight" Icon="Train.ico" Loaded="InfoTrainrideForm_Loaded" Activated="InfoTrainrideForm_Activated" WindowStartupLocation="CenterScreen" Topmost="True">
     <Grid>
-        <Grid x:Name="LayoutRoot" Height="450" Width="650" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Grid x:Name="LayoutRoot" Height="450" Width="740" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="420"/>
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -34,7 +34,7 @@
                 </MenuItem>
                 <MenuItem Name="AuthMenuItem" Header="Авторизація" Click="AuthMenuItem_Click"/>
             </Menu>
-            <DataGrid Grid.Row="1" Grid.Column="0" x:Name="TrainrideListDG" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="5,5" AutoGenerateColumns="False" ItemsSource="{Binding}" MouseDoubleClick="TrainrideListDG_MouseDoubleClick">
+            <DataGrid Grid.Row="1" Grid.Column="0" x:Name="TrainrideListDG" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="5,5" ItemsSource="{Binding}" MouseDoubleClick="TrainrideListDG_MouseDoubleClick" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="Auto"/>
                     <DataGridTextColumn Header="Номер потягу" Binding="{Binding number}" Width="Auto"/>
