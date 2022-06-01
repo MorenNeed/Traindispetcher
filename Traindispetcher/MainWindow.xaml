@@ -8,48 +8,64 @@
         xmlns:s="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Traindispetcher"
         mc:Ignorable="d"
-        Title="Інформація про поїздки" Height="Auto" Width="Auto" SizeToContent="WidthAndHeight" Icon="Train.ico" Loaded="InfoTrainrideForm_Loaded" Activated="InfoTrainrideForm_Activated">
+        Title="Інформація про поїздки" Height="480" Width="660" SizeToContent="WidthAndHeight" Icon="Train.ico" Loaded="InfoTrainrideForm_Loaded" Activated="InfoTrainrideForm_Activated">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <Menu x:Name="MainMenu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="792" BorderThickness="1">
-            <MenuItem Name="FileMenuItem" Header="Файл">
-                <MenuItem Name="LoadDataMenuItem" Header="Завантажити" Click="LoadDataMenuItem_Click"/>
-                <MenuItem Name="SaveDataMenuItem" Header="Зберегти" Click="SaveDataMenuItem_Click"/>
-            </MenuItem>
-            <MenuItem Name="TrainrideMenuItem" Header="Подорожі">
-                <MenuItem Name="EditDataMenuItem" Header="Редагувати" Click="EditDataMenuItem_Click"/>
-                <MenuItem Name="AddDataMenuItem" Header="Додати"/>
-            </MenuItem>
-            <MenuItem Name="SelectMenuItem" Header="Пошук">
-                <MenuItem Name="SelectXMenuItem" Header="За містом призначення"/>
-                <MenuItem Name="SelectXYMenuItem" Header="За часом відправлення"/>
-            </MenuItem>
-            <MenuItem Name="AuthMenuItem" Header="Авторизація" Click="AuthMenuItem_Click"/>
-        </Menu>
-        <DataGrid x:Name="TrainrideListDG" HorizontalAlignment="Left" Margin="5,20,30,40" VerticalAlignment="Top" AutoGenerateColumns="False" ItemsSource="{Binding}" MouseDoubleClick="TrainrideListDG_MouseDoubleClick">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="Auto"/>
-                <DataGridTextColumn Header="Номер потягу" Binding="{Binding number}" Width="Auto"/>
-                <DataGridTextColumn Header="Місто прибуття" Binding="{Binding city}" Width="Auto"/>
-                <DataGridTextColumn Header="Час відправлення" Binding="{Binding departure_time}" Width="Auto"/>
-                <DataGridTextColumn Header="Вільних місць" Binding="{Binding free_seats}" Width="Auto"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <GroupBox Name="TrainrideGroupBox" Header="Рейс" HorizontalAlignment="Right" Height="221" Margin="0,15,20,5" VerticalAlignment="Top" Width="289">
-            <Grid VerticalAlignment="Top">
-                <Label Name="numTrainrideLabel" Content="Номер вагону" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top"/>
-                <Label Name="cityTrainrideLabel" Content="Пункт призначення" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
-                <Label Name="timeTrainrideLabel" Content="Час відправлення" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top"/>
-                <Label Name="freeSeatsLabel" Content="Вільних місць" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top"/>
-                <xctk:MaskedTextBox x:Name="numTrainrideTextBox" Mask="LL-000" ValueDataType="{x:Type s:String}" Margin="160,20,70,155" />
-                <TextBox x:Name="cityTrainrideTextBox" HorizontalAlignment="Left" Margin="160,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100"/>
-                <xctk:MaskedTextBox x:Name="timeTrainrideTextBox" Mask="00:00" ValueDataType="{x:Type s:String}" Margin="160,80,70,95" />
-                <xctk:MaskedTextBox x:Name="freeSeatsTextBox" Mask="000" ValueDataType="{x:Type s:String}" Margin="160,110,70,60" />
-                <Button x:Name="SaveBtn" Content="Зберегти" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="75" Click="SaveBtn_Click"/>
-            </Grid>
-        </GroupBox>
+        <Grid x:Name="LayoutRoot" Height="450" Width="650" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="MainMenu" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" BorderThickness="1">
+                <MenuItem Name="FileMenuItem" Header="Файл">
+                    <MenuItem Name="LoadDataMenuItem" Header="Завантажити" Click="LoadDataMenuItem_Click"/>
+                    <MenuItem Name="SaveDataMenuItem" Header="Зберегти" Click="SaveDataMenuItem_Click"/>
+                </MenuItem>
+                <MenuItem Name="TrainrideMenuItem" Header="Подорожі">
+                    <MenuItem Name="EditDataMenuItem" Header="Редагувати" Click="EditDataMenuItem_Click"/>
+                    <MenuItem Name="AddDataMenuItem" Header="Додати" Click="AddDataMenuItem_Click"/>
+                </MenuItem>
+                <MenuItem Name="SelectMenuItem" Header="Пошук">
+                    <MenuItem Name="SelectXMenuItem" Header="За містом призначення" Click="SelectXMenuItem_Click"/>
+                    <MenuItem Name="SelectXYMenuItem" Header="За часом відправлення" Click="SelectXYMenuItem_Click"/>
+                </MenuItem>
+                <MenuItem Name="AuthMenuItem" Header="Авторизація" Click="AuthMenuItem_Click"/>
+            </Menu>
+            <DataGrid Grid.Row="1" Grid.Column="0" x:Name="TrainrideListDG" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="5,5" AutoGenerateColumns="False" ItemsSource="{Binding}" MouseDoubleClick="TrainrideListDG_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="Auto"/>
+                    <DataGridTextColumn Header="Номер потягу" Binding="{Binding number}" Width="Auto"/>
+                    <DataGridTextColumn Header="Місто прибуття" Binding="{Binding city}" Width="Auto"/>
+                    <DataGridTextColumn Header="Час відправлення" Binding="{Binding departure_time}" Width="Auto"/>
+                    <DataGridTextColumn Header="Вільних місць" Binding="{Binding free_seats}" Width="Auto"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <GroupBox Grid.Row="1" Grid.Column="1" Name="TrainrideGroupBox" Header="Подорож" HorizontalAlignment="Left" VerticalAlignment="Top" Height="220" Margin="10,180" Width="280">
+                <Grid VerticalAlignment="Top">
+                    <Label Name="numTrainrideLabel" Content="Номер вагону" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top"/>
+                    <Label Name="cityTrainrideLabel" Content="Пункт призначення" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+                    <Label Name="timeTrainrideLabel" Content="Час відправлення" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top"/>
+                    <Label Name="freeSeatsLabel" Content="Вільних місць" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top"/>
+                    <xctk:MaskedTextBox x:Name="numTrainrideTextBox" Mask="LL-000" ValueDataType="{x:Type s:String}" Margin="160,20,70,155" MaxLength="6" />
+                    <TextBox x:Name="cityTrainrideTextBox" HorizontalAlignment="Left" Margin="160,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100"/>
+                    <xctk:MaskedTextBox x:Name="timeTrainrideTextBox" Mask="00:00" ValueDataType="{x:Type s:String}" Margin="160,80,70,95" MaxLength="5"/>
+                    <xctk:MaskedTextBox x:Name="freeSeatsTextBox" Mask="000" ValueDataType="{x:Type s:String}" Margin="160,110,70,60" />
+                    <Button x:Name="SaveBtn" Content="Зберегти" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="75" Click="SaveBtn_Click"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Row="1" Grid.Column="1" Name="selTrainrideGroupBox" Header="Пошук подорожей" HorizontalAlignment="Left" Height="155" Margin="10,10,0,0" VerticalAlignment="Top" Width="280">
+                <Grid VerticalAlignment="Top">
+                    <Label Name="cityTrainrideLabelX" Content="Пункт призначення" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top"/>
+                    <Label Name="timeTrainrideLabelY" Content="Час вильоту" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="cityList" HorizontalAlignment="Left" Margin="160,20,0,0" Text="" VerticalAlignment="Top" Width="100"/>
+                    <xctk:MaskedTextBox x:Name="sTime" Mask="00:00" ValueDataType="{x:Type s:String}" Margin="160,50,70,0" VerticalAlignment="Top" Height="26"/>
+                    <Button x:Name="selBtn" Content="Вибрати" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="75" Click="selBtn_Click"/>
+                    <Button x:Name="saveSelBtn" Content="Зберегти" HorizontalAlignment="Left" Margin="160,100,0,0" VerticalAlignment="Top" Width="75" Click="saveSelBtn_Click"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
     </Grid>
 </Window>
