@@ -29,9 +29,8 @@ namespace Traindispetcher
         public void SelectXY(TimeSpan deadLine)
         {
             int j = 0;
-            for (int i = 0; i <= selectedCityList.Count; i++)
+            for (int i = 0; i < selectedCityList.Count; i++)
             {
-                //MainWindow.TrainrideListDG.ItemsSourse = null;
                 if (deadLine.Hours > selectedCityList[i].departure_time.Hours)
                 {
                     selectedCityTimeList.Add(selectedCityList[i]);

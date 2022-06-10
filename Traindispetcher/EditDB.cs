@@ -45,7 +45,7 @@ namespace Traindispetcher
             }
             catch (Exception ex)
             {
-                MainWindow.ErrorShow(ex,"Помилка з'єднання з БД", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MainWindow.ErrorShow(ex, "Помилка з'єднання з БД", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

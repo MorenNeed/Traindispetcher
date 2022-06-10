@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using static Traindispetcher.GlobalClass;
 
@@ -18,6 +19,7 @@ namespace Traindispetcher
         public static SelectData selXY;
         public static string selectedCity;
         public static TimeSpan timeTrainride;
+        public List<string> cList = new List<string>();
 
         public MainWindow()
         {
@@ -84,7 +86,7 @@ namespace Traindispetcher
         {
             MessageBox.Show(ex.Message + char.ConvertFromUtf32(13) + char.ConvertFromUtf32(13) + MsgStr, MsgName, MsgBtn, MsgImg);
         }
-        private void ResizeForm(double FrmWidth, double FrmHeight) 
+        private void ResizeForm(double FrmWidth, double FrmHeight)
         {
             this.Width = FrmWidth;
             this.Height = FrmHeight;
@@ -249,6 +251,11 @@ namespace Traindispetcher
                 nameExist = false;
 
             }
+            for (int i = 0; i < cityList.Items.Count; i++)
+            {
+                cList.Add(cityList.Items.GetItemAt(i).ToString());
+            }
+
         }
         private void selBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -271,8 +278,9 @@ namespace Traindispetcher
 
             selXY.SelectXY(timeTrainride);
 
-            for (int i = 0; i < selXY.selectedCityTimeList.Count; i++)
+            for (int i = 0; i <= selXY.selectedCityTimeList.Count; i++)
             {
+                TrainrideListDG.ItemsSource = null;
                 if (timeTrainrideLabelY.Visibility == Visibility.Hidden)
                 {
                     TrainrideListDG.ItemsSource = selXY.selectedCityList;
