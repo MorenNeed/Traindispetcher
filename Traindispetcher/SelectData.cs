@@ -29,8 +29,9 @@ namespace Traindispetcher
         public void SelectXY(TimeSpan deadLine)
         {
             int j = 0;
-            for (int i = 0; i < selectedCityList.Count; i++)
+            for (int i = 0; i <= selectedCityList.Count; i++)
             {
+                //MainWindow.TrainrideListDG.ItemsSourse = null;
                 if (deadLine.Hours > selectedCityList[i].departure_time.Hours)
                 {
                     selectedCityTimeList.Add(selectedCityList[i]);
@@ -54,7 +55,7 @@ namespace Traindispetcher
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + char.ConvertFromUtf32(13) + "Помістіть файл Шаблон_Пошуку_подорожей.dot " + char.ConvertFromUtf32(13) +
+                MainWindow.ErrorShow(ex, "Помістіть файл Шаблон_Пошуку_подорожей.dot " +
                     "у каталог із exe-файлом програми і повторіть збереження", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
@@ -73,7 +74,7 @@ namespace Traindispetcher
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + char.ConvertFromUtf32(13) + "Помилка відібраних даних", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MainWindow.ErrorShow(ex, "Помилка відібраних даних", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (wordDoc != null)
             {

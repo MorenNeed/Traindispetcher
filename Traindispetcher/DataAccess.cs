@@ -43,7 +43,7 @@ namespace Traindispetcher
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + char.ConvertFromUtf32(13) + char.ConvertFromUtf32(13) + "Для завантаження файлу " + "виконайте команду Файл-Завантажити", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MainWindow.ErrorShow(ex,"Для завантаження файлу " + "виконайте команду Файл-Завантажити", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

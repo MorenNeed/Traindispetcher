@@ -24,7 +24,7 @@ namespace Traindispetcher
             InitializeComponent();
         }
 
-        private void InfoTrainrideForm_Loaded(object sender, RoutedEventArgs e)
+        public void InfoTrainrideForm_Loaded(object sender, RoutedEventArgs e)
         {
 
             selTrainrideGroupBox.Visibility = Visibility.Hidden;
@@ -37,8 +37,8 @@ namespace Traindispetcher
 
             this.SizeToContent = SizeToContent.Manual;
             TrainrideListDG.Height = 320;
-            this.Width = TrainrideListDG.Margin.Left + TrainrideListDG.RenderSize.Width + 90;
-            this.Height = TrainrideListDG.Margin.Top + TrainrideListDG.RenderSize.Height + 90;
+            ResizeForm(TrainrideListDG.Margin.Left + TrainrideListDG.RenderSize.Width + 90,
+            TrainrideListDG.Margin.Top + TrainrideListDG.RenderSize.Height + 90);
 
             TrainrideMenuItem.Visibility = Visibility.Hidden;
             TrainrideMenuItem.Width = 0;
@@ -74,11 +74,20 @@ namespace Traindispetcher
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + char.ConvertFromUtf32(13) + char.ConvertFromUtf32(13) + "Для завантаження файлу " + "виконайте команду Файл-Завантажити", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                ErrorShow(ex, "Для завантаження даних виконайте команду Файл-Завантажити", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             DataAccess DataConnection = new DataAccess();
 
             TrainrideListDG.ItemsSource = DataConnection.fList;
+        }
+        public static void ErrorShow(Exception ex, string MsgStr, string MsgName, MessageBoxButton MsgBtn, MessageBoxImage MsgImg)
+        {
+            MessageBox.Show(ex.Message + char.ConvertFromUtf32(13) + char.ConvertFromUtf32(13) + MsgStr, MsgName, MsgBtn, MsgImg);
+        }
+        private void ResizeForm(double FrmWidth, double FrmHeight) 
+        {
+            this.Width = FrmWidth;
+            this.Height = FrmHeight;
         }
         private void AuthMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -103,8 +112,7 @@ namespace Traindispetcher
         {
             TrainrideGroupBox.Visibility = Visibility.Visible;
 
-            this.Width = 750;
-            this.Height = 480;
+            ResizeForm(750, 480);
 
             MessageBox.Show("Оберіть у списку рейс для редагування подвійним кліком", "Увага!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
@@ -122,7 +130,7 @@ namespace Traindispetcher
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message + char.ConvertFromUtf32(13), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                    ErrorShow(ex, "", "", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
                 editedRow = new EditDB();
@@ -180,8 +188,7 @@ namespace Traindispetcher
         {
             TrainrideGroupBox.Visibility = Visibility.Visible;
 
-            this.Width = 750;
-            this.Height = 480;
+            ResizeForm(750, 480);
 
             numTrainrideTextBox.Text = "";
             cityTrainrideTextBox.Text = "";
@@ -197,14 +204,13 @@ namespace Traindispetcher
                 MessageBox.Show("Кількість записів перевищує ліміт. Подвійним кліком миші оберіть запис, " + "який потрібно видалити", "Увага", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-        private void SelectXMenuItem_Click(object sender, RoutedEventArgs e)
+        public void SelectXMenuItem_Click(object sender, RoutedEventArgs e)
         {
             selTrainrideGroupBox.Visibility = Visibility.Visible;
             timeTrainrideLabelY.Visibility = Visibility.Hidden;
             sTime.Visibility = Visibility.Hidden;
 
-            this.Width = 750;
-            this.Height = 480;
+            ResizeForm(750, 480);
 
             cityList.Items.Clear();
 
@@ -277,14 +283,13 @@ namespace Traindispetcher
                 }
             }
         }
-        private void SelectXYMenuItem_Click(object sender, RoutedEventArgs e)
+        public void SelectXYMenuItem_Click(object sender, RoutedEventArgs e)
         {
             selTrainrideGroupBox.Visibility = Visibility.Visible;
             timeTrainrideLabelY.Visibility = Visibility.Visible;
             sTime.Visibility = Visibility.Visible;
 
-            this.Width = 750;
-            this.Height = 480;
+            ResizeForm(750, 480);
 
             cityList.Items.Clear();
 
